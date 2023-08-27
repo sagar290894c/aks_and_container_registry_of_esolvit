@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "managedClusters_arytic_aks_name": {
+            "value": null
+        },
+        "virtualNetworks_arytic_aks_vnet_externalid": {
+            "value": null
+        },
+        "workspaces_defaultworkspace_abe9aa42_a778_4254_a30b_f24c8218028d_cus_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_bed5e556_9e10_4662_9df2_faaba4d943ac_externalid": {
+            "value": null
+        },
+        "userAssignedIdentities_arytic_aks_agentpool_externalid": {
+            "value": null
+        }
+    }
+}
