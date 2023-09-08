@@ -1,0 +1,63 @@
+
+gmail:                  sagar2908v@gmail.com               ,  bingo9044 
+gmail:                  sagar.arytic@gmail.com             ,  bingo9044 
+ionos:                  vidyasagar.pillamarri@arytic.com   ,  Arytic@2023!
+keka:                   vidyasagar.pillamarri@arytic.com   ,  Bingo9044$
+microsoft account:      vidyasagar.pillamarri@arytic.com   ,  bingo9044
+microsoft AZURE:        vidyasagar.pillamarri@arytic.com   ,  bingo9044
+Azure repos-PAT Token   xz44ivv7a6cndvalnkfg62kgjp7xfdnbzf2xgcphocmntu4qy2aa
+doctl token             dop_v1_733d013bd74865d6720977d7f5033e7cd36bda2641d626af46be867626aae2c9
+steps:
+- task: Kubernetes@1
+  displayName: 'kubectl apply'
+  inputs:
+    kubernetesServiceEndpoint: 'digital_ocean'
+    namespace: 'arytic-dev004'
+    command: apply
+    useConfigurationFile: true
+    configuration: '$(System.DefaultWorkingDirectory)/_arytic_build/nix_candidate_ui.yaml'
+    arguments: '--validate=false'
+    azureSubscriptionEndpointForSecrets: AryticSvcConn
+    azureContainerRegistry: arytictestacr.azurecr.io
+    forceUpdate: false
+    versionSpec: 1.7.0
+
+Digital Ocean cli installation:
+
+Invoke-WebRequest https://github.com/digitalocean/doctl/releases/download/v1.98.1/doctl-1.98.1-windows-amd64.zip -OutFile ~\doctl-1.98.1-windows-amd64.zip
+Expand-Archive -Path ~\doctl-1.98.1-windows-amd64.zip
+execute below commands one by one or all copy pase once
+
+New-Item -ItemType Directory $env:ProgramFiles\doctl\
+Move-Item -Path ~\doctl-1.98.1-windows-amd64\doctl.exe -Destination $env:ProgramFiles\doctl\
+[Environment]::SetEnvironmentVariable(
+    "Path",
+    [Environment]::GetEnvironmentVariable("Path",
+    [EnvironmentVariableTarget]::Machine) + ";$env:ProgramFiles\doctl\",
+    [EnvironmentVariableTarget]::Machine)
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
+
+doctl auth init --access-token _ _ _ _ _ => see above for token =>                                                                                                  doctl auth init --access-token dop_v1_733d013bd74865d6720977d7f5033e7cd36bda2641d626af46be867626aae2c9
+doctl account get
+doctl kubernetes cluster kubeconfig save _ _ _ _ _ => doctl kubernetes cluster kubeconfig save a6af1f83-69b8-41f2-80cf-e22a75a38d79                                enter your cluster no or id here in dashes byseeing from d.ocean or copy total cmd as it is fine
+simply fo testing execute some cmds=> kubectl get pods -n arytic-dev004  ,  k describe pod master-data-api-dev004-6b4dffc79-f4689 -n arytic-dev004
+
+for reconnecting to Digital ocean from azure cloud in my local cli use below cmds
+
+doctl auth init --access-token dop_v1_733d013bd74865d6720977d7f5033e7cd36bda2641d626af46be867626aae2c9                                                             doctl kubernetes cluster kubeconfig save a6af1f83-69b8-41f2-80cf-e22a75a38d79
+simply fo testing execute some cmds=> kubectl get pods -n arytic-dev004  ,  k describe pod master-data-api-dev004-6b4dffc79-f4689 -n arytic-dev004
+
+
+jobseeker_api:below urls for pull push
+a) clone, push by https
+   https clone:  https://aryticus@dev.azure.com/aryticus/Arytic%20V4.0/_git/jobseeker_api
+   https push:   git remote add origin https://aryticus@dev.azure.com/aryticus/Arytic%20V4.0/_git/jobseeker_api
+                 git push -u origin --all
+
+b) clone, push by ssh
+   ssh clone:    git@ssh.dev.azure.com:v3/aryticus/Arytic%20V4.0/jobseeker_api
+   ssh push:     git remote add origin git@ssh.dev.azure.com:v3/aryticus/Arytic%20V4.0/jobseeker_api
+                 git push -u origin --all
+
+https://identityapiv1-dev004.arytic.com
+jobsapi-dev004.arytic.com
